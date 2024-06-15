@@ -4,8 +4,14 @@
         "target": "ESNext",
         "module": "ESNext",
         "paths": {
+            "server": [
+                "./src/index.ts"
+            ],
             "types": [
-                "./types.ts"
+                "../types.ts"
+            ],
+            "out/*": [
+                "./out/*"
             ]
         }
     }

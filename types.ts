@@ -1,3 +1,11 @@
+export interface Event {
+    title?: string,
+    description?: string,
+    date?: string,
+    start?: string,
+    end?: string
+}
+
 export interface Club {
     new: boolean
     name: string
@@ -5,7 +13,6 @@ export interface Club {
     tier: number
     description: string
     day: string
-    extra?: string
     frequency: string
     time: string
     location: string
@@ -19,6 +26,6 @@ export interface Club {
 export interface Staff {
     name: string
     department: string
-    email: string | null
-    phone: string | null
+    email?: string
+    phone?: string
 }
