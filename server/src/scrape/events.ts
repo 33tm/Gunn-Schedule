@@ -13,8 +13,9 @@ export const events = async () => {
         .then(({ window }) => window.document
             .querySelector("[data-calendarid='all'] ul li:last-child a")
             ?.getAttribute("href")
-            ?.replace("webcal", "https"))
-        .then(ical => fetch(ical!).then(res => res.text()))
+            ?.replace("webcal", "https")!)
+        .then(fetch)
+        .then(res => res.text())
 
     return ics
         .split("BEGIN:VEVENT")
