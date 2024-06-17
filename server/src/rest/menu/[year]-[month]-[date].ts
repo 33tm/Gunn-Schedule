@@ -54,7 +54,7 @@ export const GET: Route = async (req, res) => {
         return res.status(404).end()
 
     brunch.forEach(({ date }, i) => {
-        menus.set(date!, {
+        menus.set(date, {
             brunch: brunch[i].menu,
             lunch: lunch[i].menu
         })
