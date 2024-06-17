@@ -47,9 +47,14 @@ export const GET: Route = async (req, res) => {
             return { date, menu }
         }))
 
+    if (!brunch.flatMap(({ menu }) => menu).length &&
+        !lunch.flatMap(({ menu }) => menu).length &&
+        new Date() < new Date(datestring))
+        return res.status(404).end()
+
     brunch.forEach(({ date }, i) => {
         menus.set(date!, {
-            brunch: brunch[i].menu.filter(item => item),
+            brunch: brunch[i].menu,
             lunch: lunch[i].menu
         })
     })
