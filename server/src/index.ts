@@ -1,4 +1,8 @@
-import express, { json } from "express"
+import express, {
+    json,
+    type Request,
+    type Response
+} from "express"
 
 import {
     existsSync,
@@ -8,6 +12,8 @@ import {
     writeFileSync
 } from "fs"
 import { createHash } from "crypto"
+
+import type { Menu } from "types"
 
 if (!existsSync("out")) mkdirSync("out")
 
@@ -20,10 +26,16 @@ await Promise.all(scrapers.map(scraper => scraper()))
     .then(res => res.reduce((acc, curr, i) => ({ ...acc, [scrapers[i].name]: curr }), {}))
     .then(res => writeFileSync("out/data.json", JSON.stringify(res)))
 
-export const data = require("out/data.json")
+// @ts-ignore
+export const data = await import("out/data.json")
+    .then(module => module.default)
+
+export const menus = new Map<string, Menu>()
 
 const rest = express()
     .use(json())
+
+export type Route = (req: Request, res: Response) => void
 
 const importRoutes = (root: string) => {
     readdirSync(root).forEach(file => {

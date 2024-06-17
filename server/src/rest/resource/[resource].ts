@@ -1,5 +1,4 @@
-import { data } from "server"
-import type { Route } from "types"
+import { type Route, data } from "server"
 
 export const POST: Route = (req, res) => {
     const { hash } = req.body
@@ -8,11 +7,11 @@ export const POST: Route = (req, res) => {
     if (!hash)
         return res.status(400).end()
 
-    if (!data[resource])
+    if (!data[resource as keyof typeof data])
         return res.status(404).end()
 
-    if (data[resource].hash === hash!)
+    if (data[resource as keyof typeof data].hash === hash!)
         return res.status(304).end()
 
-    res.json(data[resource])
+    res.json(data[resource as keyof typeof data])
 }
