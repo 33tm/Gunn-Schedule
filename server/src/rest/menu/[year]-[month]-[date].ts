@@ -1,5 +1,5 @@
 import { type Route, data, menus } from "server"
-import { Nutrislice } from "types"
+import type { Nutrislice } from "types"
 
 export const GET: Route = async (req, res) => {
     const { year, month, date } = req.params
@@ -30,18 +30,19 @@ export const GET: Route = async (req, res) => {
             const menu = menu_items ? menu_items.map(({
                 text,
                 food,
-                serving_size_amount = null,
-                serving_size_unit = null
+                serving_size_amount,
+                serving_size_unit
             }) => {
                 if (text || !food) return null
                 const { name, ingredients, rounded_nutrition_info } = food
                 const nutrition = !Object.values(rounded_nutrition_info)
                     .every(value => value === null) ? rounded_nutrition_info : null
+                const serving = `${serving_size_amount} ${serving_size_unit}`
                 return {
                     name,
                     ingredients,
-                    nutrition,
-                    serving: `${serving_size_amount} ${serving_size_unit}`
+                    ...(nutrition && { nutrition }),
+                    ...(serving !== "null null" && { serving })
                 }
             }).filter(item => item) : []
             return { date, menu }

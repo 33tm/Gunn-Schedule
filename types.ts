@@ -6,8 +6,8 @@ export type Menu = {
 export interface Item {
     name: string
     ingredients: string
-    nutrition: Nutrition | null
-    serving: string
+    nutrition?: Nutrition
+    serving?: string
 }
 
 interface Nutrition {
