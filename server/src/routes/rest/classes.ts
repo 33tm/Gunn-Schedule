@@ -1,5 +1,6 @@
 import { type Route, db, schoology } from "server"
 import { verify } from "jsonwebtoken"
+import { Period } from "types"
 
 export const GET: Route = async (req, res) => {
     try {
@@ -28,6 +29,7 @@ export const GET: Route = async (req, res) => {
             .request("GET", `/users/${uid}/sections`, token)
             .then(({ section }: {
                 section: {
+                    id: string
                     course_title: string
                     section_title: string
                     building_id: string
@@ -35,11 +37,13 @@ export const GET: Route = async (req, res) => {
                 }[]
             }) => section
                 .map(({
+                    id,
                     course_title,
                     section_title,
                     building_id,
                     profile_url
                 }) => ({
+                    id,
                     course: course_title,
                     section: section_title,
                     building: building_id,
@@ -54,11 +58,17 @@ export const GET: Route = async (req, res) => {
             "Senior": 12
         }[courses.filter(({ course }) => course === "Gunn Student")[0].section.split(" ")[0]] || 0
 
-        const periods: { course: string, teacher: string, image: string }[] = Array(8).fill(null)
+        const periods: { id: string, course: string, teacher: string, image: string }[] = Array(Object.keys(Period).length / 2).fill(null)
 
-        courses.forEach(({ course, section, image }) => {
+        courses.forEach(({ id, course, section, image }) => {
+            periods[{
+                "Gunn Student": Period.GRADE,
+                "Gunn Library": Period.LIBRARY,
+                "SELF": Period.SELF,
+                "Study Hall": Period.STUDYHALL
+            }[course] || -1] = { id, course, teacher: "", image }
             const [_, period, teacher] = section.match(/(\d) ([a-z]+)/i) || []
-            periods[parseInt(period)] = { course, teacher, image }
+            periods[parseInt(period)] = { id, course, teacher, image }
         })
 
         db
