@@ -30,8 +30,8 @@ export const POST: Route = async (req, res) => {
         return res.status(403).end()
 
     db
-        .query("INSERT OR IGNORE INTO users (uid, key, secret) VALUES ($uid, $key, $secret)")
-        .run({ $uid: uid, $key: key, $secret: secret })
+        .query("INSERT OR IGNORE INTO schoology (uid, key, secret) VALUES ($uid, $key, $secret)")
+        .run({ $uid: uid, $key: token.key, $secret: token.secret })
 
     const jwt = sign({ uid, id: username }, process.env.JWT_SECRET!)
 
