@@ -37,18 +37,17 @@ export const schoology = new SchoologyAPI(
 
 db.run(`CREATE TABLE IF NOT EXISTS users (
     uid TEXT PRIMARY KEY,
-    id TEXT,
-    clubs TEXT,
-    grade INTEGER,
-    P0 TEXT DEFAULT "Period 0",
-    P1 TEXT DEFAULT "Period 1",
-    P2 TEXT DEFAULT "Period 2",
-    P3 TEXT DEFAULT "Period 3",
-    P4 TEXT DEFAULT "Period 4",
-    P5 TEXT DEFAULT "Period 5",
-    P6 TEXT DEFAULT "Period 6",
-    P7 TEXT DEFAULT "Period 7",
-    P8 TEXT DEFAULT "Period 8"
+    key TEXT,
+    secret TEXT,
+    p0 TEXT DEFAULT "Period 0",
+    p1 TEXT DEFAULT "Period 1",
+    p2 TEXT DEFAULT "Period 2",
+    p3 TEXT DEFAULT "Period 3",
+    p4 TEXT DEFAULT "Period 4",
+    p5 TEXT DEFAULT "Period 5",
+    p6 TEXT DEFAULT "Period 6",
+    p7 TEXT DEFAULT "Period 7",
+    p8 TEXT DEFAULT "Period 8"
 )`)
 
 const config = { origin: "*" }
