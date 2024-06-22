@@ -7,7 +7,7 @@ import { Periods } from "@/components/periods"
 import { DateSwitcher } from "@/components/dateswitcher"
 
 export default () => {
-    const [time, setTime] = useState<Date>()
+    const [time, setTime] = useState(new Date())
     const [date, setDate] = useState(new Date())
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export default () => {
 
     return (
         <>
-            <p>{time && format(time, "pp")}</p>
+            <p suppressHydrationWarning>{time && format(time, "pp")}</p>
             <DateSwitcher date={date} setDate={setDate} />
             <Periods date={date} time={time} />
         </>

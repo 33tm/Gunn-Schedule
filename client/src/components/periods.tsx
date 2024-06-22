@@ -7,7 +7,7 @@ import { Period } from "@/components/period"
 
 import type { Menu } from "shared/types"
 
-export const Periods = ({ date, time }: { date: Date, time?: Date }) => {
+export const Periods = ({ date, time }: { date: Date, time: Date }) => {
     const [menu, setMenu] = useState<Menu>()
     const [schedule, setSchedule] = useState<[string, string, string][]>()
     const [periods, setPeriods] = useState<string[]>([
@@ -30,6 +30,7 @@ export const Periods = ({ date, time }: { date: Date, time?: Date }) => {
         setSchedule(getSchedule(date, periods, grade) as [string, string, string][])
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu/${format(date, "yyyy-MM-dd")}`)
             .then(res => res.json())
+            .catch(() => null)
             .then(setMenu)
     }, [date])
 
@@ -41,6 +42,7 @@ export const Periods = ({ date, time }: { date: Date, time?: Date }) => {
                     period={period}
                     start={start}
                     end={end}
+                    date={date}
                     time={time}
                     menu={menu}
                 />
