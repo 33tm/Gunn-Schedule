@@ -1,5 +1,5 @@
 import { JSDOM } from "jsdom"
-import type { Event } from "types"
+import type { Event } from "shared/types"
 
 export const events = async () => {
     const calendars = await JSDOM

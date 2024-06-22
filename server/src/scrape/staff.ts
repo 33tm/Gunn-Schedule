@@ -1,5 +1,5 @@
 import { JSDOM } from "jsdom"
-import type { Staff } from "types"
+import type { Staff } from "shared/types"
 
 export const staff = async () => {
     const rows = await JSDOM

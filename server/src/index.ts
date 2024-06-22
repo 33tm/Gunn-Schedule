@@ -10,7 +10,7 @@ import cors from "cors"
 import SchoologyAPI from "schoologyapi"
 import { Database } from "bun:sqlite"
 
-import type { Menu } from "types"
+import type { Menu } from "shared/types"
 
 if (!existsSync("out")) mkdirSync("out")
 

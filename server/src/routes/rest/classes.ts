@@ -1,6 +1,6 @@
 import { type Route, db, schoology } from "server"
 import { verify } from "jsonwebtoken"
-import { Period } from "types"
+import { Period } from "shared/enums"
 
 export const GET: Route = async (req, res) => {
     try {

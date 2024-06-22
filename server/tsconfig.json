@@ -10,9 +10,6 @@
             "server": [
                 "./src/index.ts"
             ],
-            "types": [
-                "../types.ts"
-            ],
             "out/*": [
                 "./out/*"
             ]

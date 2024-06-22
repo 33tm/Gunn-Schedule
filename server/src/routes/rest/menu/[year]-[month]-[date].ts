@@ -1,5 +1,5 @@
 import { type Route, data, menus } from "server"
-import type { Nutrislice } from "types"
+import type { Nutrislice } from "shared/types"
 
 export const GET: Route = async (req, res) => {
     const { year, month, date } = req.params
@@ -51,7 +51,7 @@ export const GET: Route = async (req, res) => {
     if (!brunch.flatMap(({ menu }) => menu).length &&
         !lunch.flatMap(({ menu }) => menu).length &&
         new Date() < new Date(datestring))
-        return res.status(404).end()
+        return res.json({ brunch: [], lunch: [] })
 
     brunch.forEach(({ date }, i) => {
         menus.set(date, {
