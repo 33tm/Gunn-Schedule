@@ -3,7 +3,7 @@ import type { Nutrition } from "shared/types"
 
 export const NutritionFacts = ({ nutrition, serving }: { nutrition: Nutrition, serving?: string }) => {
     return (
-        <div className="w-full">
+        <>
             <p className="font-black text-2xl">Nutrition Facts</p>
             <Separator className={serving || "h-1.5"} />
             {serving && (
@@ -102,6 +102,6 @@ export const NutritionFacts = ({ nutrition, serving }: { nutrition: Nutrition, s
                 <p className="pl-1">{nutrition.mg_potassium || 0}mg</p>
                 <p className="ml-auto font-bold">{nutrition.mg_potassium && Math.round(nutrition.mg_potassium / 4700 * 100) || 0}%</p>
             </div>
-        </div>
+        </>
     )
 }
