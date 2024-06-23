@@ -16,6 +16,7 @@ export default () => {
             .catch(() => ({ jwt: null }))
             .then(({ jwt }) => {
                 if (!jwt) return
+                localStorage.removeItem("id")
                 localStorage.setItem("jwt", jwt)
                 new BroadcastChannel("jwt").postMessage(null)
                 window.close()
