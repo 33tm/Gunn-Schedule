@@ -3,6 +3,7 @@
 import { format } from "date-fns"
 import { useEffect, useState } from "react"
 
+import { Auth } from "@/components/auth"
 import { Periods } from "@/components/periods"
 import { DateSwitcher } from "@/components/dateswitcher"
 
@@ -17,6 +18,7 @@ export default () => {
 
     return (
         <>
+            <Auth />
             <p suppressHydrationWarning>{time && format(time, "pp")}</p>
             <DateSwitcher date={date} setDate={setDate} />
             <Periods date={date} time={time} />

@@ -52,7 +52,7 @@ const config = { origin: "*" }
 
 const rest = express().use(json(), cors(config))
 const server = createServer(rest)
-export const socket = new Server(server, { cors: config })
+const socket = new Server(server, { cors: config })
 
 export type Route = (req: Request, res: Response) => void
 export type Handler = (server: Namespace, socket: Socket, data: any) => void

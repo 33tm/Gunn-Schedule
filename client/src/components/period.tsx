@@ -14,8 +14,8 @@ export const Period = ({ period, start, end, date, time, menu }: {
 }) => {
     if (period === "Passing Period") return
 
-    const started = new Date(`${format(date, "yyyy-MM-dd")}T${start}Z`)
-    const ended = new Date(`${format(date, "yyyy-MM-dd")}T${end}Z`)
+    const started = new Date(`${format(date, "yyyy-MM-dd")}T${start}`)
+    const ended = new Date(`${format(date, "yyyy-MM-dd")}T${end}`)
 
     const beforeStart = !!(compareDesc(time, started) + 1)
     const afterEnd = !!(compareAsc(time, ended) + 1)
@@ -33,7 +33,7 @@ export const Period = ({ period, start, end, date, time, menu }: {
         >
             <div>
                 <p className="font-bold">{period}</p>
-                <p>{start} - {end}</p>
+                <p>{format(started, "p")} - {format(ended.toISOString(), "p")}</p>
                 {state.before && (
                     <p>Starting in {formatDistanceToNowStrict(started)}</p>
                 )}

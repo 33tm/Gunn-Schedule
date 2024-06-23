@@ -1,4 +1,4 @@
-import { type Route, schoology, tokens, db, socket } from "server"
+import { type Route, schoology, tokens, db } from "server"
 import { sign } from "jsonwebtoken"
 
 export const POST: Route = async (req, res) => {
@@ -35,7 +35,5 @@ export const POST: Route = async (req, res) => {
 
     const jwt = sign({ uid, id: username }, process.env.JWT_SECRET!)
 
-    socket.of("/auth").to(id).emit("jwt", jwt)
-
-    res.end()
+    res.json({ jwt })
 }
