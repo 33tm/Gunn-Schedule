@@ -29,7 +29,10 @@ export const Period = ({ period, start, end, date, time, menu }: {
     return (
         <div
             key={start}
-            className="flex p-4 m-4 outline-dotted rounded-xl"
+            className={`
+            flex p-4 m-4 rounded-xl bg-primary
+
+            `}
         >
             <div>
                 <p className="font-bold">{period}</p>
@@ -44,7 +47,7 @@ export const Period = ({ period, start, end, date, time, menu }: {
                     <p>Ended {formatDistanceToNowStrict(ended)} ago</p>
                 )}
             </div>
-            <Menu time={time} period={period} menu={menu} />
+            <Menu date={date} period={period} menu={menu} />
         </div >
     )
 }

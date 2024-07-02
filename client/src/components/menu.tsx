@@ -21,7 +21,7 @@ import { NutritionFacts } from "@/components/nutritionfacts"
 
 import type { Menu as MenuType } from "shared/types"
 
-export const Menu = ({ time, period, menu }: { time: Date, period: string, menu?: MenuType }) => {
+export const Menu = ({ date, period, menu }: { date: Date, period: string, menu?: MenuType }) => {
     if (!menu) return
     const meal = period.toLowerCase() as keyof MenuType
     return (period === "Brunch" || period === "Lunch") && (
@@ -32,7 +32,7 @@ export const Menu = ({ time, period, menu }: { time: Date, period: string, menu?
             <CredenzaContent>
                 <CredenzaHeader>
                     <CredenzaTitle>{period} Menu</CredenzaTitle>
-                    <CredenzaDescription>{format(time, "PPP")}</CredenzaDescription>
+                    <CredenzaDescription>{format(date, "PPP")}</CredenzaDescription>
                 </CredenzaHeader>
                 <CredenzaBody className="rounded-xl space-y-2 mb-2 md:m-auto">
                     {menu[meal].map(item => {
