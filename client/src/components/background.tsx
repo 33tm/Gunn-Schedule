@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect } from "react"
 
 export const Background = ({ children }: { children: React.ReactNode }) => {
