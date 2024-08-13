@@ -1,3 +1,9 @@
+Currently supports scraping clubs, events, and staff via `/resource/[resource]`
+
+\+ lunch menu via `/menu/YYYY-MM-DD`
+
+😀
+
 Extremely new and original idea I'm sure nothing like this exists at all
 
 Wouldn't rely on this at all, just use [watt](https://gunnwatt.web.app).
